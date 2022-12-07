@@ -1,0 +1,62 @@
+stages:
+  - lint
+  - test
+  - publish
+
+lint:
+  image: node:18
+  stage: lint
+  tags:
+    - office
+  cache:
+    key: lint-cache
+    paths:
+      - node_modules/
+      - src/
+    policy: push
+  script:
+    - npm install
+    - npm run lint
+    - npm run prettier
+test:
+  image: node:18
+  stage: test
+  tags:
+    - office
+  cache:
+    key: lint-cache
+    paths:
+      - node_modules/
+      - src/
+    policy: pull
+  script:
+    - npm install
+    - npm run test
+
+publish:
+  image: node:18
+  stage: publish
+  tags:
+    - office
+  only:
+    - master
+  script:
+    - npm config set @ecosystem:registry ${CI_API_V4_URL}/v4/projects/${CI_PROJECT_ID}/packages/npm/
+    - npm config set -- "${CI_API_V4_URL#http*:}/projects/${CI_PROJECT_ID}/packages/npm/:_authToken" "${CI_JOB_TOKEN}"
+    - npm config set -- "${CI_API_V4_URL#http*:}/projects/<your_project_id>/packages/npm/:always-auth" "true"
+    - npm install
+    - npm run build
+
+    # Extract a few values from package.json
+    - NPM_PACKAGE_NAME=$(node -p "require('./package.json').name")
+    - NPM_PACKAGE_VERSION=$(node -p "require('./package.json').version")
+
+    # Compare the version in package.json to all published versions.
+    # If the package.json version has not yet been published, run `npm publish`.
+    - |
+      if [[ $(npm view "${NPM_PACKAGE_NAME}" versions) != *"'${NPM_PACKAGE_VERSION}'"* ]]; then
+        npm run deploy
+        echo "Successfully published version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} to GitLab's NPM registry: ${CI_PROJECT_URL}/-/packages"
+      else
+        echo "Version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} has already been published, so no new version has been published."
+      fi

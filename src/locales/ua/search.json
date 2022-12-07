@@ -1,0 +1,19 @@
+{
+  "input": {
+    "placeholder": "Пошук"
+  },
+  "action": {
+    "defaultMessage": "Що ви шукаєте?",
+    "searchTips": "<strong>Поради з пошуку:</strong> Деякі пошукові запити потребують точного співпадіння. Спробуйте ввести весь термін або використать інше слово або фразу",
+    "noResult": "Нічого не знайдено для \"{{searchStr}}\""
+  },
+  "results": {
+    "title": {
+      "Shopify Admin": "Адміністратор Shopify",
+      "Resources": "Ресурси",
+      "Quick Actions": "Швидкі дії",
+      "Apps": "Додатки",
+      "Expert Help": "Довідка експерта"
+    }
+  }
+}

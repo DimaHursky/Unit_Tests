@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "buttons": {
+      "create": "Create appLocales",
+      "save": "Save appLocales"
+    },
+    "pages": {
+      "login": {
+        "signin": "Sign In",
+        "signup": "Sign Up"
+      }
+    },
+    "crud": {
+      "actions.create": "Create",
+      "actions.read": "Watch",
+      "actions.update": "Update",
+      "actions.delete": "Delete"
+    },
+    "search": {
+      "input": {
+        "placeholder": "Search"
+      },
+      "action": {
+        "defaultMessage": "What are you looking for?",
+        "noResult": "No results for \"{{searchStr}}\"",
+        "searchTips": "<strong>Search tips:</strong> Some search terms require an exact match. Try typing the entire term, or use a different word or phrase."
+      },
+      "results": {
+        "title": {
+          "Shopify Admin": "Shopify Admin",
+          "Resources": "Resources",
+          "Quick Actions": "Quick Actions",
+          "Apps": "Apps",
+          "Expert Help": "Expert Help"
+        }
+      }
+    }
+  }
+}
