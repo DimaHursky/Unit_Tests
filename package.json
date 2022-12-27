@@ -6,7 +6,7 @@
   "module": "dist/esm/index.js",
   "scripts": {
     "prepare": "husky install",
-    "test": "jest ./src",
+    "test": "jest .src/components/Actions/Actions.test.tsx", 
     "lint": "eslint --fix --ext .js,.ts,.tsx \"./src/**/*.{js,ts,tsx}\"",
     "prettier": "prettier --config ./.prettierrc --write --list-different \"./src/**/*.{js,json,ts,tsx}\"",
     "build": "rimraf ./dist && rollup -c",
@@ -47,8 +47,6 @@
     "@storybook/manager-webpack5": "^6.5.12",
     "@storybook/react": "^6.5.12",
     "@storybook/testing-library": "^0.0.13",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^26.0.24",
@@ -115,6 +113,8 @@
     "i18next": "^22.0.4",
     "i18next-http-backend": "^2.0.1",
     "react-i18next": "^12.0.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
     "date-fns": "^2.29.3"
   }
 }

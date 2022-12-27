@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import Actions from './Actions';
 import { EcosystemThemeProvider } from '../../providers';
@@ -10,11 +10,11 @@ const ActionsComponent = () => {
   const actions = [
     {
       content: 'Duplicate',
-      onAction: () => console.log('Duplicate action'),
+      onAction: jest.fn(), //() => console.log('Duplicate action'),
     },
     {
       content: 'Duplicate2',
-      onAction: () => console.log('Duplicate action2'),
+      onAction: jest.fn(), //() => console.log('Duplicate action2'),
     },
   ];
 
@@ -25,7 +25,7 @@ const ActionsComponent = () => {
         {
           content: 'Share on Facebook',
           accessibilityLabel: 'Individual action label',
-          onAction: () => console.log('Share on Facebook action'),
+          onAction: jest.fn(), //() => console.log('Share on Facebook action'),
         },
       ],
     },
@@ -35,7 +35,7 @@ const ActionsComponent = () => {
         {
           content: 'Share on Faceboo1k',
           accessibilityLabel: 'Individual action 1label',
-          onAction: () => console.log('Share on Faceb1ook action'),
+          onAction: jest.fn(), //() => console.log('Share on Faceb1ook action'),
         },
       ],
     },
@@ -61,5 +61,46 @@ describe('Running Test for Actions', () => {
   test('Component Actions is rendered', () => {
     render(<ActionsComponent />);
     expect(screen.getByTestId('actions')).not.toBeNull();
+  });
+
+  test('Component Actions is all elements whrn the pa ', () => {
+    render(<ActionsComponent />);
+    expect(screen.getByText('Duplicate')).toBeInTheDocument();
+    expect(screen.getByText('Duplicate2')).toBeInTheDocument();
+    expect(screen.getByText('Promote')).toBeInTheDocument();
+    expect(screen.getByText('Promote1')).toBeInTheDocument();
+  });
+
+  test('the elements from groups (Promote),(Promote 1) should not be displayed', () => {
+    render(<ActionsComponent />);
+    expect(screen.queryByText('Share on Facebook')).toBeNull();
+    expect(screen.queryByText('Share on Faceboo1k')).toBeNull();
+  });
+
+  test('Component Actions is render with Groups options', () => {
+    render(<ActionsComponent />);
+    expect(screen.getByText('Duplicate')).toBeInTheDocument();
+    expect(screen.getByText('Duplicate2')).toBeInTheDocument();
+    expect(screen.getByText('Promote')).toBeInTheDocument();
+    expect(screen.getByText('Promote1')).toBeInTheDocument();
+    //Drobdown 'Promote'
+    fireEvent.click(screen.getByText('Promote')); //Drobdown
+    expect(screen.getByText('Share on Facebook')).toBeInTheDocument();
+    //Drobdown 'Promote1'
+    fireEvent.click(screen.getByText('Promote1'));
+    expect(screen.getByText('Share on Faceboo1k')).toBeInTheDocument();
+  });
+
+  test.only('should make an action on Actions option ', () => {
+    render(<ActionsComponent />);
+    fireEvent.click(screen.getByTestId('action-menu'));
+    fireEvent.click(screen.getByText('Duplicate'));
+    fireEvent.click(screen.getByText('Duplicate2'));
+    fireEvent.click(screen.getByText('Promote'));
+    fireEvent.click(screen.getByText('Promote1'));
+    fireEvent.click(screen.getByText('Share on Facebook'));
+    fireEvent.click(screen.getByText('Share on Faceboo1k'));
+
+    //expect(actions[0].onAction).toBeCalled();
   });
 });
