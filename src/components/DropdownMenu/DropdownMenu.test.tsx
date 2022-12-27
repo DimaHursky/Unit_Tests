@@ -7,6 +7,7 @@ import { EcosystemThemeProvider } from '../../providers';
 import { LightTheme } from '../../theme';
 import { ESButton } from '../ESButton';
 import ContentCopy from '@mui/icons-material/ContentCopy';
+import { Icon } from '@mui/material';
 
 const DropdownComponent = () => {
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
@@ -19,9 +20,11 @@ const DropdownComponent = () => {
       items: [
         {
           content: 'Import file',
-          onAction: () => console.log('import file 1'),
+          onAction: jest.fn(),
+          //onAction: () => console.log('import file 1'),
           icon: <ContentCopy fontSize="small" />,
           suffix: <ContentCopy fontSize="small" />,
+          disabled: true,
         },
         {
           content: 'Export file',
@@ -62,8 +65,62 @@ const DropdownComponent = () => {
 describe('Running Test for DropdownMenu', () => {
   test('Component DropdownMenu is rendered', () => {
     render(<DropdownComponent />);
-
     fireEvent.click(screen.getByTestId('open-btn'));
     expect(screen.getByTestId('dropdown')).toBeInTheDocument();
+  });
+
+  test('Check if dropdown button is enabled', () => {
+    render(<DropdownComponent />);
+    const OpenBtn = screen.getByTestId('open-btn');
+    expect(OpenBtn).toBeEnabled();
+  });
+
+  test.only('should make an action on DropdownMenu option ', () => {
+    //не шарю як це реалізувати
+    render(<DropdownComponent />, {
+      // disablet: true,
+    });
+    const primaryAction = screen.getByTestId('open-btn');
+    expect(primaryAction.querySelector('button')).toBeDisabled();
+    screen.logTestingPlaygroundURL();
+  });
+
+  test('all buttons should be in the document', () => {
+    render(<DropdownComponent />);
+    expect(screen.getByText('Open')).toBeInTheDocument();
+    expect(screen.queryByText('Import file')).toBeNull();
+    expect(screen.queryByText('Export file')).toBeNull();
+    expect(screen.queryByText('Import file2')).toBeNull();
+    expect(screen.queryByText('Export file2')).toBeNull();
+  });
+
+  test('all buttons should be in the document', () => {
+    render(<DropdownComponent />);
+    fireEvent.click(screen.getByTestId('open-btn'));
+    expect(screen.getByText('Open')).toBeInTheDocument();
+    expect(screen.getByText('Import file')).toBeInTheDocument();
+    expect(screen.getByText('Export file')).toBeInTheDocument();
+    expect(screen.getByText('Import file2')).toBeInTheDocument();
+    expect(screen.getByText('Export file2')).toBeInTheDocument();
+  });
+
+  test('Caheck the onAction is work', () => {
+    render(<DropdownComponent />);
+    fireEvent.click(screen.getByTestId('open-btn'));
+    const btn = screen.getByText('Export file');
+    expect(btn.textContent).toEqual('Export file');
+  });
+  test('should make an action on DropdownMenu option ', () => {
+    render(<DropdownComponent />);
+    screen.logTestingPlaygroundURL();
+    const btn = fireEvent.click(screen.getByTestId('open-btn'));
+    const btn2 = fireEvent.click(
+      screen.getByRole('button', { name: /import file1/i }),
+    );
+
+    // expect(handleClick[0].onAction).toBeCalled();
+    //screen.getByRole('button').click();
+
+    //expect(props.onAction).toBeCalled();
   });
 });
