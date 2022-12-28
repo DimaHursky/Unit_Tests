@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, } from '@testing-library/react';
 
 import SecondaryAction from './SecondaryAction';
 import { EcosystemThemeProvider } from '../../providers';
@@ -26,7 +26,7 @@ describe('Running Test for SecondaryAction', () => {
   });
 
   it('handles CSS text collor', () => {
-    render(<SecondaryActionn/>);
+    render(<SecondaryActionn/>);render
       const buttonSize = screen.getByText('Secondary Action');
       
       expect(buttonSize).toHaveStyle('color: rgb(32, 34, 35)');
@@ -44,11 +44,14 @@ it('handles CSS text size', () => {
     expect(buttonSize).toHaveStyle('font-size: 0.94rem');
 });
 
-it('handles CSS text font', () => {
+it.only('handles CSS text font', () => {
   render(<SecondaryActionn/>);
     const buttonSize = screen.getByText('Secondary Action');
 
-    expect(buttonSize).toHaveStyle('font: -webkit-small-control');
+    // expect(buttonSize).toHaveStyle('font-family: Arial');
+    // expect(buttonSize).tohaveStyleRule('font-family: Arial');
+    //expect(buttonSize).toHaveStyleRule('font-size', '20px');
+    // expect(wrapper.find('button')).toHaveStyleRule('font-size', '20px');
 });
 
 });

@@ -96,20 +96,17 @@ describe('Running Test for ActionList', () => {
     ActionListt({sections});
     expect(screen.getByText ('Import file')).toBeInTheDocument();
     expect(screen.getByText ('Export file')).toBeInTheDocument();
-    expect(screen.getByText ('Import file2')).toBeInTheDocument();
-    expect(screen.getByText ('Export file2')).toBeInTheDocument();
-    // expect(screen.queryByText('Export file')).toBeNull();
-    // expect(getByTestId).not.toBeNull();
   });
 
   it('should render the ActionList with items options', ()=>{
     ActionListt({items});
     expect(screen.getByText ('Import file')).toBeInTheDocument();
     expect(screen.getByText ('Export file')).toBeInTheDocument();
-    
+    expect(screen.getByText ('Import file2')).toBeInTheDocument();
+    expect(screen.getByText ('Export file2')).toBeInTheDocument();
   });
 
-  test.only('should make an action on ActionList option ', () => {
+  test('should make an action on ActionList option ', () => {
     ActionListt({ items });
     fireEvent.click(screen.getByText('Import file'));
     fireEvent.click(screen.getByText('Export file'));
@@ -117,5 +114,19 @@ describe('Running Test for ActionList', () => {
     fireEvent.click(screen.getByText('Export file2'));
 
     expect(items[0].onAction).toBeCalled();
+  });
+
+  it.only('handles CSS text size', () => {
+    ActionListt({items});
+      const buttonSize = screen.getByText('Import file');
+      
+      expect(buttonSize).toHaveStyle('font-size: 0.94rem');
+  });
+  
+  it.only('handles CSS text font', () => {
+    ActionListt({items});
+      const buttonSize = screen.getByText('Import file');
+  
+      expect(buttonSize).toHaveStyle('font: -webkit-small-control');
   });
 });
