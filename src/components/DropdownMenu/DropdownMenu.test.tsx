@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen, } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import DropdownMenu from './DropdownMenu';
 import { EcosystemThemeProvider } from '../../providers';
@@ -22,7 +22,7 @@ const sections = [
       },
       {
         content: 'Export file',
-        onAction: jest.fn(),//() => console.log('export file 1'),
+        onAction: jest.fn(), //() => console.log('export file 1'),
       },
     ],
   },
@@ -109,13 +109,12 @@ describe('Running Test for DropdownMenu', () => {
     expect(dropdownBtn).toHaveTextContent('Import file2');
     expect(dropdownBtn).toHaveTextContent('Export file2');
     // expect(btn.textContent).toEqual('File options Import fileExport file File options2 Import file2 Export file2');
-
   });
 
   test.only('should make an action on DropdownMenu option', () => {
-    render(<DropdownComponent sections={sections}/>);
+    render(<DropdownComponent sections={sections} />);
     screen.logTestingPlaygroundURL();
-    fireEvent.click(screen.getByTestId('open-btn'));    
+    fireEvent.click(screen.getByTestId('open-btn'));
 
     fireEvent.click(screen.getByText('Import file'));
     fireEvent.click(screen.getByText('Export file'));
@@ -126,5 +125,4 @@ describe('Running Test for DropdownMenu', () => {
     expect(sections[1].items[0].onAction).toBeCalled();
     expect(sections[1].items[1].onAction).toBeCalled();
   });
-
 });
