@@ -50,7 +50,7 @@ const ActionList = React.forwardRef(
     const { items, sections } = props;
 
     return (
-      <ActionListWrapperStyled ref={ref}>
+      <ActionListWrapperStyled ref={ref} data-testid="ActionList">
         {items && <ItemsList items={items} />}
         {sections?.map((section: SectionsType, idx: number) => (
           <div key={section.title || idx} tabIndex={-1}>
