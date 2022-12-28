@@ -75,13 +75,19 @@ describe('Running Test for DropdownMenu', () => {
     expect(OpenBtn).toBeEnabled();
   });
 
-  test.only('should make an action on DropdownMenu option ', () => {
-    //не шарю як це реалізувати
-    render(<DropdownComponent />, {
-      // disablet: true,
-    });
+  test('should make an action on DropdownMenu option ', () => {
+    render(
+      <EcosystemThemeProvider theme={LightTheme}>
+        <ESButton
+          data-testid={'open-btn'}
+          disabled={true}
+        />
+      </EcosystemThemeProvider>,    
+      );
+
     const primaryAction = screen.getByTestId('open-btn');
-    expect(primaryAction.querySelector('button')).toBeDisabled();
+    // expect(primaryAction.querySelector('button')).toBeDisabled();
+    expect(primaryAction).toBeDisabled();
     screen.logTestingPlaygroundURL();
   });
 
@@ -110,17 +116,19 @@ describe('Running Test for DropdownMenu', () => {
     const btn = screen.getByText('Export file');
     expect(btn.textContent).toEqual('Export file');
   });
-  test('should make an action on DropdownMenu option ', () => {
-    render(<DropdownComponent />);
-    screen.logTestingPlaygroundURL();
-    const btn = fireEvent.click(screen.getByTestId('open-btn'));
-    const btn2 = fireEvent.click(
-      screen.getByRole('button', { name: /import file1/i }),
-    );
 
-    // expect(handleClick[0].onAction).toBeCalled();
-    //screen.getByRole('button').click();
+  //TODO - уточнити реалізацію onAction).toBeCalled() для цього елемента
 
-    //expect(props.onAction).toBeCalled();
-  });
+  
+  // test('should make an action on DropdownMenu option ', () => {
+  //   render(<DropdownComponent />);
+  //   screen.logTestingPlaygroundURL();
+  //   const btn = fireEvent.click(screen.getByTestId('open-btn'));
+  //   const btn2 = fireEvent.click(screen.getByRole('button', { name: /import file1/i }),
+  //   );
+
+  //   // expect(handleClick[0].onAction).toBeCalled();
+  //   //screen.getByRole('button').click();
+
+  //   //expect(props.onAction).toBeCalled();
 });
