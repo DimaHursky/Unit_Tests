@@ -63,13 +63,13 @@ const DropdownComponent = (props) => {
 
 describe('Running Test for DropdownMenu', () => {
   test('Component DropdownMenu is rendered', () => {
-    render(<DropdownComponent />);
+    render(<DropdownComponent sections={sections}/>);
     fireEvent.click(screen.getByTestId('open-btn'));
     expect(screen.getByTestId('dropdown')).toBeInTheDocument();
   });
 
   test('Check if dropdown button is enabled', () => {
-    render(<DropdownComponent />);
+    render(<DropdownComponent sections={sections}/>);
     const OpenBtn = screen.getByTestId('open-btn');
     expect(OpenBtn).toBeEnabled();
 
@@ -78,7 +78,7 @@ describe('Running Test for DropdownMenu', () => {
   });
 
   test('all buttons is not avalible when dropdown is closed', () => {
-    render(<DropdownComponent />);
+    render(<DropdownComponent sections={sections}/>);
     expect(screen.getByText('Open')).toBeInTheDocument();
     expect(screen.queryByText('Import file')).toBeNull();
     expect(screen.queryByText('Export file')).toBeNull();
@@ -87,18 +87,20 @@ describe('Running Test for DropdownMenu', () => {
   });
 
   test('all buttons must be in the document when the dropdown is expanded', () => {
-    render(<DropdownComponent />);
+    render(<DropdownComponent sections={sections}/>);
     fireEvent.click(screen.getByTestId('open-btn'));
+    // fireEvent.click(screen.getByText('Open'));
 
     expect(screen.getByText('Open')).toBeInTheDocument();
     expect(screen.getByText('Import file')).toBeInTheDocument();
     expect(screen.getByText('Export file')).toBeInTheDocument();
     expect(screen.getByText('Import file2')).toBeInTheDocument();
     expect(screen.getByText('Export file2')).toBeInTheDocument();
+    screen.logTestingPlaygroundURL();
   });
 
   test('Caheck the onAction is work', () => {
-    render(<DropdownComponent />);
+    render(<DropdownComponent sections={sections}/>);
     fireEvent.click(screen.getByTestId('open-btn'));
 
     const dropdownBtn = screen.getByTestId('dropdown');
@@ -109,9 +111,10 @@ describe('Running Test for DropdownMenu', () => {
     expect(dropdownBtn).toHaveTextContent('Import file2');
     expect(dropdownBtn).toHaveTextContent('Export file2');
     // expect(btn.textContent).toEqual('File options Import fileExport file File options2 Import file2 Export file2');
+    
   });
 
-  test.only('should make an action on DropdownMenu option', () => {
+  test('should make an action on DropdownMenu option', () => {
     render(<DropdownComponent sections={sections} />);
     screen.logTestingPlaygroundURL();
     fireEvent.click(screen.getByTestId('open-btn'));
