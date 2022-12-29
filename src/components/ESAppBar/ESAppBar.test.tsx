@@ -27,20 +27,19 @@ const MockApps = () => (
 
 const MockProfileButton = () => <Box>Profile</Box>;
 
-const ESAppBarr = ()=>{
-  return(
+const ESAppBarr = () => {
+  return (
     <EcosystemThemeProvider theme={LightTheme}>
-    <ESAppBar
-      officeSwitcher={<MockOfficeSwitcher />}
-      showNavigationToggle
-      searchField={<MockSearchField />}
-      notifications={<MockNotifications />}
-      apps={<MockApps />}
-      profileButton={<MockProfileButton />}
-    />
-  </EcosystemThemeProvider>
-  )
-}
+      <ESAppBar
+        officeSwitcher={<MockOfficeSwitcher />}
+        showNavigationToggle
+        searchField={<MockSearchField />}
+        notifications={<MockNotifications />}
+        apps={<MockApps />}
+        profileButton={<MockProfileButton />}
+      />
+    </EcosystemThemeProvider>
+  )};
 
 describe('Running Test for ESAppBar', () => {
   test('Component ESAppBar is rendered', () => {
@@ -78,21 +77,21 @@ describe('Running Test for ESAppBar', () => {
   });
 
   it('Component ESAppBar is rendered', () => {
-    render(<ESAppBarr/>);
+    render(<ESAppBarr />);
     expect(screen.getByText('Office Switcher')).toBeInTheDocument();
     expect(screen.getByText('Search Field')).toBeInTheDocument();
     expect(screen.getByText('Profile')).toBeInTheDocument();
     // expect(screen.queryByText('Promote')).toBeNull();
 
-      screen.debug();
-      screen.logTestingPlaygroundURL();
+    screen.debug();
+    screen.logTestingPlaygroundURL();
   });
 
   it('', () => {
-    render(<ESAppBarr/>);
+    render(<ESAppBarr />);
   });
 
   it('', () => {
-    render(<ESAppBarr/>);
+    render(<ESAppBarr />);
   });
 });

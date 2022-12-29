@@ -11,7 +11,7 @@ describe('Running Test for ESDatePickerDay', () => {
     render(
       <EcosystemThemeProvider theme={LightTheme}>
         <ESDatePickerDay day={new Date(2022, 10, 10)} />
-      </EcosystemThemeProvider>
+      </EcosystemThemeProvider>,
     );
     expect(screen.getByText('10')).not.toBeNull();
   });

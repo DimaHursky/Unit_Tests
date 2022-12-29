@@ -31,12 +31,12 @@ const sections = [
     items: [
       {
         content: 'Import file2',
-        onAction: () => console.log('import file 21'),
+        onAction: jest.fn(),//() => console.log('import file 21'),
         icon: <ContentCopy fontSize="small" />,
       },
       {
         content: 'Export file2',
-        onAction: () => console.log('export file 22'),
+        onAction: jest.fn(),//() => console.log('export file 22'),
       },
     ],
   },
@@ -97,7 +97,7 @@ describe('Running Test for DropdownMenu', () => {
     expect(screen.getByText('Export file2')).toBeInTheDocument();
   });
 
-  test('Caheck the onAction is work', () => {
+  test('Caheck if all text is rendered', () => {
     render(<DropdownComponent />);
     fireEvent.click(screen.getByTestId('open-btn'));
 
@@ -108,10 +108,11 @@ describe('Running Test for DropdownMenu', () => {
     expect(dropdownBtn).toHaveTextContent('File options2');
     expect(dropdownBtn).toHaveTextContent('Import file2');
     expect(dropdownBtn).toHaveTextContent('Export file2');
+    screen.logTestingPlaygroundURL();
     // expect(btn.textContent).toEqual('File options Import fileExport file File options2 Import file2 Export file2');
   });
 
-  test.only('should make an action on DropdownMenu option', () => {
+  test('should make an action on DropdownMenu option', () => {
     render(<DropdownComponent sections={sections} />);
     screen.logTestingPlaygroundURL();
     fireEvent.click(screen.getByTestId('open-btn'));
