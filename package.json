@@ -6,7 +6,7 @@
   "module": "dist/esm/index.js",
   "scripts": {
     "prepare": "husky install",
-    "test": "jest .src/components/Actions/Actions.test.tsx", 
+    "test": "jest .src/components/ESSelect/ESSelect.test.tsx", 
     "lint": "eslint --fix --ext .js,.ts,.tsx \"./src/**/*.{js,ts,tsx}\"",
     "prettier": "prettier --config ./.prettierrc --write --list-different \"./src/**/*.{js,json,ts,tsx}\"",
     "build": "rimraf ./dist && rollup -c",

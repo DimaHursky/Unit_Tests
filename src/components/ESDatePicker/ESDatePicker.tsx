@@ -174,12 +174,13 @@ const ESDatePicker = (inProps: ESDatePickerProps) => {
     >
       <DatePickerHeader>
         <MonthSwitcher
+          data-testid="Previuse-Month"
           variant="text"
           onClick={() => handleMonthChangeClick(previousMonth, previousYear)}
         >
           <WestRoundedIcon fontSize="small" />
         </MonthSwitcher>
-        <MonthSwitcher variant="text">
+        <MonthSwitcher data-testid="Next-Month" variant="text">
           <EastRoundedIcon
             fontSize="small"
             onClick={() => handleMonthChangeClick(nextMonth, nextYear)}

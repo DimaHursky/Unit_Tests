@@ -14,5 +14,6 @@ describe('Running Test for ESAvatar', () => {
       </EcosystemThemeProvider>,
     );
     expect(screen.getByText('QW')).not.toBeNull();
+    screen.debug();
   });
 });

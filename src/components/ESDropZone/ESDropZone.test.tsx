@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@testing-library/jest-dom';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import ESDropZone from './ESDropZone';
 import EcosystemWrapper from '../../../tests/EcosystemWrapper';
 import { ESFileUpload } from '../ESFileUpload';
@@ -69,5 +69,48 @@ describe('Running Test for ESDropZone', () => {
 
     expect(getByText(actionTitle)).toBeInTheDocument();
     expect(getByText(actionHint)).toBeInTheDocument();
+    screen.logTestingPlaygroundURL();
   });
+
+  test('ESDropZone components is rendered be default', () => {
+    const result = render(<TestingComponent />);
+    const dropZoneID = result.container.querySelector('#DropZone');
+
+    screen.logTestingPlaygroundURL();
+    expect(dropZoneID).toBeInTheDocument();
+    expect(screen.getByText(/завантаження файлів/i)).toBeInTheDocument();
+    expect(screen.getByTestId(/drop-zone/i)).toBeInTheDocument();
+    expect(screen.getByText(/add file/i)).toBeInTheDocument();
+    expect(screen.getByText(/description/i)).toBeInTheDocument();
+    screen.logTestingPlaygroundURL();
+  });
+
+  test('ESDropZone attributes is rendered by default', () => {
+    const result = render(<TestingComponent />);
+    const dropZoneID = result.container.querySelector('#DropZone');
+
+    expect(screen.getByTestId('drop-zone')).toHaveAttribute(
+      'aria-disabled',
+      'false',
+    );
+    expect(dropZoneID).toHaveProperty('type', 'file');
+    expect(dropZoneID).toHaveProperty('autocomplete', 'off');
+    expect(dropZoneID).toHaveProperty('multiple', true);
+  });
+  //TODO - реалізувати перевірку мобільного вінка так як за посиланняи нище
+  // test.only('ESDropZone the popup select file is opens', ()=>{
+  //   https://testing-library.com/docs/example-react-modal/
+  //   const handleClose = jest.fn()
+
+  //   const {getByText} = render(
+  //     <TestingComponent onClose={handleClose}>
+  //       <div>test</div>
+  //     </TestingComponent>,
+  //   )
+  //   const dropDownBtn = screen.getByTestId(/drop-zone/i)
+
+  //   fireEvent.click(dropDownBtn);
+
+  //   screen.logTestingPlaygroundURL();
+  // })
 });

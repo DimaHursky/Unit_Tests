@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen, } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import ESSelect from './ESSelect';
 import { EcosystemThemeProvider } from '../../providers';
@@ -142,18 +142,24 @@ describe('Running Test for ESSelect', () => {
     expect(getByText(errorText)).not.toBeNull();
   });
 
-  test('should render ESSelect text files when popup issn*t displayeds', ()=>{
-    const result = render(<TestingComponent options={selectGroup} labelInline disabled />);
+  test('should render ESSelect text files when popup issn*t displayeds', () => {
+    const result = render(
+      <TestingComponent options={selectGroup} labelInline disabled />,
+    );
 
     expect(screen.getByText('Look up codes')).toBeInTheDocument();
-    expect(screen.getByRole('link', {
-      name: /look up codes/i,
-      hidden: true
-    })).toBeInTheDocument();
+    expect(
+      screen.getByRole('link', {
+        name: /look up codes/i,
+        hidden: true,
+      }),
+    ).toBeInTheDocument();
     expect(screen.getByText('prefix')).toBeInTheDocument();
-    expect(screen.getByRole('menuitem', {
-      hidden: true
-    })).toBeInTheDocument();
+    expect(
+      screen.getByRole('menuitem', {
+        hidden: true,
+      }),
+    ).toBeInTheDocument();
     expect(screen.getByText('Error text')).toBeInTheDocument();
     expect(screen.getByText('Help Text')).toBeInTheDocument();
     expect(screen.getByText('Options Title')).toBeInTheDocument();
@@ -161,19 +167,19 @@ describe('Running Test for ESSelect', () => {
     expect(screen.getByText('Most spent')).toBeInTheDocument();
   });
 
-  test.only('should render ESSelect text files when popup is opens', ()=>{
+  test.only('should render ESSelect text files when popup is opens', () => {
     // const result = render(<TestingComponent options={selectGroup} labelInline disabled />);
     const { getByText } = render(
       <TestingComponent options={selectGroup} labelInline disabled />,
     );
 
-    fireEvent.click(screen.getByRole('textbox', {
-      hidden: true
-    }));
+    fireEvent.click(
+      screen.getByRole('textbox', {
+        hidden: true,
+      }),
+    );
 
-    
     screen.logTestingPlaygroundURL();
     screen.debug();
-
-  })
+  });
 });
