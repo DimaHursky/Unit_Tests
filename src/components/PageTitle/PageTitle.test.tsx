@@ -1,6 +1,7 @@
 import * as React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import { Chip } from '@mui/material';
 
 import PageTitle from './PageTitle';
 import { EcosystemThemeProvider } from '../../providers';
@@ -9,7 +10,14 @@ import { LightTheme } from '../../theme';
 const TitlePage = () => {
   return (
     <EcosystemThemeProvider theme={LightTheme}>
-      <PageTitle title={'title'} subtitle={'subtitle'} />
+      <PageTitle
+        title={'title'}
+        subtitle={'subtitle'}
+        // titleMetadata={'Title metadata'}
+        titleMetadata={
+          <Chip label="Title metadata" color="primary" size={'small'} />
+        }
+      />
     </EcosystemThemeProvider>
   );
 };
@@ -29,7 +37,9 @@ describe('Running Test for PageTitle', () => {
     render(<TitlePage />);
     screen.logTestingPlaygroundURL();
     const btn = screen.getByTestId('page-title');
+
     expect(btn).toHaveTextContent('title');
     expect(btn).toHaveTextContent('subtitle');
+    expect(btn).toHaveTextContent('Title metadata');
   });
 });

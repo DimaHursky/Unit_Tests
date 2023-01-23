@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import ESCard from './ESCard';
 import { LightTheme } from '../../theme';
@@ -44,6 +44,8 @@ describe('Running Test for ESCard', () => {
     expect(card).toContainElement(cardHeader);
     expect(card).toContainElement(cardContent);
     expect(card).toContainElement(cardContentText);
+    screen.debug();
+    screen.logTestingPlaygroundURL();
   });
 
   test('Component ESCard with all CardHeader props is rendered', () => {
@@ -85,7 +87,7 @@ describe('Running Test for ESCard', () => {
     expect(card).toContainElement(cardText);
   });
 
-  test('Component ESCard with ESCardActions is rendered', () => {
+  test.only('Component ESCard with ESCardActions is rendered', () => {
     const { getByTestId, getByText } = render(
       <EcosystemThemeProvider theme={LightTheme}>
         <ESCard data-testid="card">
