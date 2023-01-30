@@ -87,7 +87,7 @@ describe('Running Test for ESCard', () => {
     expect(card).toContainElement(cardText);
   });
 
-  test.only('Component ESCard with ESCardActions is rendered', () => {
+  test('Component ESCard with ESCardActions is rendered', () => {
     const { getByTestId, getByText } = render(
       <EcosystemThemeProvider theme={LightTheme}>
         <ESCard data-testid="card">

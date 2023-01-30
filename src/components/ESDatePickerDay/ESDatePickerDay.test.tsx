@@ -25,7 +25,7 @@ describe('Running Test for ESDatePickerDay', () => {
     expect(screen.getByText('10')).toBeEnabled();
   });
 
-  test.only('The day button is selected', () => {
+  test('The day button is selected', () => {
     render(
       <EcosystemThemeProvider theme={LightTheme}>
         <ESDatePickerDay day={new Date(2022, 10, 10)} />

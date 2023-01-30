@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@testing-library/jest-dom';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 
 import ESSelect from './ESSelect';
 import { EcosystemThemeProvider } from '../../providers';
@@ -167,19 +167,16 @@ describe('Running Test for ESSelect', () => {
     expect(screen.getByText('Most spent')).toBeInTheDocument();
   });
 
-  test.only('should render ESSelect text files when popup is opens', () => {
-    // const result = render(<TestingComponent options={selectGroup} labelInline disabled />);
-    const { getByText } = render(
-      <TestingComponent options={selectGroup} labelInline disabled />,
-    );
+  test('should render ESSelect textbox is rendered', () => {
+     render(<TestingComponent options={selectGroup} labelInline disabled/>);
+     const selectComponent = screen.getByTestId(selectTestIds.select);
+     const btn = within(selectComponent).getByRole('button', {hidden: true});
+     fireEvent.mouseDown(btn);
 
-    fireEvent.click(
-      screen.getByRole('textbox', {
-        hidden: true,
-      }),
-    );
-
+     const listBox = within(screen.getByRole('presentation')).getByRole(
+      'listbox'
+     )
+     expect(listBox).toBeInTheDocument();
     screen.logTestingPlaygroundURL();
-    screen.debug();
   });
 });

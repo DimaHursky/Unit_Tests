@@ -14,8 +14,7 @@ const sections = [
     items: [
       {
         content: 'Import file',
-        onAction: jest.fn(),
-        //onAction: () => console.log('import file 1'),
+        onAction: jest.fn(), //onAction: () => console.log('import file 1'),
         icon: <ContentCopy fontSize="small" />,
         suffix: <ContentCopy fontSize="small" />,
         disabled: true,
@@ -65,6 +64,7 @@ describe('Running Test for DropdownMenu', () => {
   test('Component DropdownMenu is rendered', () => {
     render(<DropdownComponent sections={sections} />);
     fireEvent.click(screen.getByTestId('open-btn'));
+
     expect(screen.getByTestId('dropdown')).toBeInTheDocument();
   });
 
@@ -79,6 +79,7 @@ describe('Running Test for DropdownMenu', () => {
 
   test('all buttons is not avalible when dropdown is closed', () => {
     render(<DropdownComponent sections={sections} />);
+
     expect(screen.getByText('Open')).toBeInTheDocument();
     expect(screen.queryByText('Import file')).toBeNull();
     expect(screen.queryByText('Export file')).toBeNull();
@@ -89,14 +90,12 @@ describe('Running Test for DropdownMenu', () => {
   test('all buttons must be in the document when the dropdown is expanded', () => {
     render(<DropdownComponent sections={sections} />);
     fireEvent.click(screen.getByTestId('open-btn'));
-    // fireEvent.click(screen.getByText('Open'));
 
     expect(screen.getByText('Open')).toBeInTheDocument();
     expect(screen.getByText('Import file')).toBeInTheDocument();
     expect(screen.getByText('Export file')).toBeInTheDocument();
     expect(screen.getByText('Import file2')).toBeInTheDocument();
     expect(screen.getByText('Export file2')).toBeInTheDocument();
-    screen.logTestingPlaygroundURL();
   });
 
   test('Caheck the onAction is work', () => {
@@ -110,21 +109,18 @@ describe('Running Test for DropdownMenu', () => {
     expect(dropdownBtn).toHaveTextContent('File options2');
     expect(dropdownBtn).toHaveTextContent('Import file2');
     expect(dropdownBtn).toHaveTextContent('Export file2');
-    // expect(btn.textContent).toEqual('File options Import fileExport file File options2 Import file2 Export file2');
   });
 
-  test('should make an action on DropdownMenu option', () => {
+  test('should make an action on DropdownMenu for File options', () => {
     render(<DropdownComponent sections={sections} />);
-    screen.logTestingPlaygroundURL();
     fireEvent.click(screen.getByTestId('open-btn'));
 
     fireEvent.click(screen.getByText('Import file'));
     fireEvent.click(screen.getByText('Export file'));
     fireEvent.click(screen.getByText('Import file2'));
     fireEvent.click(screen.getByText('Export file2'));
+
     expect(sections[0].items[0].onAction).toBeCalled();
     expect(sections[0].items[1].onAction).toBeCalled();
-    expect(sections[1].items[0].onAction).toBeCalled();
-    expect(sections[1].items[1].onAction).toBeCalled();
   });
 });

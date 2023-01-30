@@ -40,20 +40,26 @@ describe('Running Test for ESRadioButton', () => {
     expect(screen.getByText('Radio Button')).not.toBeNull();
   });
 
-  test('Component ESRadioButton is able to be chack', () => {
+  test('Component ESRadioButton to be chacked', () => {
     render(<ChoiceListComponent />);
-    const radioBtn = screen.getByText(/radio button/i);
+    const radioBtn = screen.getByRole('radio', { name: /radio button/i });
     expect(radioBtn).not.toBeChecked();
     fireEvent.click(radioBtn);
-    // expect(radioBtn).toBeChecked();
-    // TODO - Треба додати елеметн по якому можна перевірити чи було натискання
-    screen.logTestingPlaygroundURL();
+    expect(radioBtn).toBeChecked();
   });
 
-  test('Component ESRadioButton have content Radio Button', () => {
+  test('Component ESRadioButton have a text', () => {
     render(<ChoiceListComponent />);
     const radioBtn = screen.getByText(/radio button/i);
     expect(radioBtn).toHaveTextContent('Radio Button');
+  });
+
+  test('Component ESRadioButton have attributes', () => {
+    render(<ChoiceListComponent />);
+    const radioBtn = screen.getByRole('radio', { name: /radio button/i });;
+    expect(radioBtn).toHaveAttribute('type', 'radio');
+    expect(radioBtn).toHaveAttribute('class', 'MuiInput-input')
+    expect(radioBtn).toHaveAttribute('value', 'radio')
     screen.debug();
     screen.logTestingPlaygroundURL();
   });

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '@testing-library/jest-dom';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen,  } from '@testing-library/react';
 import EcosystemWrapper from '../../../tests/EcosystemWrapper';
 import ESAppBar from '../ESAppBar/ESAppBar';
 import Search from './Search';
@@ -145,10 +145,8 @@ describe('Running Test for Search', () => {
   test('Search component get the data', async () => {
     const { findByTestId, getByPlaceholderText, queryByTestId, getByTestId } =
       render(<TestingComponent />);
-
     fireEvent.click(await findByTestId(searchTestIds.btn));
     const searchInput = getByPlaceholderText(placeholderRegExp);
-
     fireEvent.change(searchInput, inputValue);
 
     expect(queryByTestId(searchTestIds.list)).toBeNull();
@@ -169,7 +167,6 @@ describe('Running Test for Search', () => {
 
     fireEvent.click(await findByTestId(searchTestIds.btn));
     const searchInput = getByPlaceholderText(placeholderRegExp);
-
     fireEvent.change(searchInput, notResultInputValue);
 
     const noResultsBlock = await findByTestId(searchTestIds.noResults);
@@ -185,12 +182,12 @@ describe('Running Test for Search', () => {
     const { findByTestId, getByPlaceholderText, getByTestId } = render(
       <TestingComponent />,
     );
-
     fireEvent.click(await findByTestId(searchTestIds.btn));
     const searchInput = getByPlaceholderText(placeholderRegExp);
 
     fireEvent.change(searchInput, inputValue);
     fireEvent.click(getByTestId(searchTestIds.clean));
     expect(getByTestId(searchTestIds.info)).toBeInTheDocument();
+    screen.logTestingPlaygroundURL();
   });
 });
