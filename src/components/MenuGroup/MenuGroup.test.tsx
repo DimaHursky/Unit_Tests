@@ -9,12 +9,11 @@ import { LightTheme } from '../../theme';
 const actions = [
   {
     content: 'Duplicate',
-    onAction: jest.fn(),
-    // onAction: () => console.log('Duplicate action'),
+    onAction: jest.fn(), //() => console.log('Duplicate action'),
   },
   {
     content: 'View on your store',
-    onAction: () => console.log('View on your store action'),
+    onAction: jest.fn(), //() => console.log('View on your store action'),
   },
 ];
 
@@ -30,11 +29,14 @@ describe('Running Test for MenuGroup', () => {
   test('Component MenuGroup is rendered', () => {
     render(<MenuGroupp />);
     expect(screen.getByTestId('menu-group')).toBeInTheDocument();
+    expect(screen.getByTestId('ArrowDropDownRoundedIcon')).toBeInTheDocument();
   });
 
   test('Component Group is rendered', () => {
     render(<MenuGroupp />);
     const count = screen.getByTestId('menu-group');
+    expect(count).toBeEnabled();
+    expect(count).toHaveTextContent('group');
     fireEvent.click(count);
     expect(count).toHaveTextContent('group');
   });
@@ -59,7 +61,6 @@ describe('Running Test for MenuGroup', () => {
     fireEvent.click(screen.getByRole('button', { name: /group/i }));
     expect(screen.getByText(/duplicate/i)).toBeEnabled();
     expect(screen.getByText(/view on your store/i)).toBeEnabled();
-    screen.logTestingPlaygroundURL();
   });
   test('the button name is group ', () => {
     render(<MenuGroupp />);
@@ -67,5 +68,6 @@ describe('Running Test for MenuGroup', () => {
     fireEvent.click(screen.getByText(/duplicate/i));
     fireEvent.click(screen.getByText(/view on your store/i));
     expect(actions[0].onAction).toBeCalled();
+    screen.logTestingPlaygroundURL();
   });
 });

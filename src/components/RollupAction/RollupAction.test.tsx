@@ -54,7 +54,7 @@ const sections = [
 const RollupActionn = () => {
   return (
     <EcosystemThemeProvider theme={LightTheme}>
-      <RollupAction actions={actions} sections={sections} />
+      <RollupAction actions={actions} sections={sections} />б
     </EcosystemThemeProvider>
   );
 };
@@ -62,6 +62,7 @@ const RollupActionn = () => {
 describe('Running Test for RollupAction', () => {
   test('Component RollupAction is rendered', () => {
     render(<RollupActionn />);
+
     expect(screen.getByTestId('rollup-btn')).toBeInTheDocument();
     fireEvent.click(screen.getByTestId('rollup-btn'));
     expect(screen.getByTestId('dropdown')).toBeInTheDocument();
@@ -89,27 +90,36 @@ describe('Running Test for RollupAction', () => {
     expect(screen.getByText('View on your store 4')).toBeInTheDocument();
     expect(screen.getByText('Share on Facebook')).toBeInTheDocument();
     expect(screen.getByText('Share on Faceboo1k')).toBeInTheDocument();
-    screen.logTestingPlaygroundURL();
-    screen.debug();
   });
 
-  test('on Action', () => {
-    render(<RollupActionn />);
-    fireEvent.click(screen.getByTestId('rollup-btn'));
-    expect(actions[0].onAction).not.toBeCalled();
-  });
+  // test.only('on Action to be called', () => {
+  //   const result = render(<RollupActionn />);
 
-  test('on Action', () => {
+  //   fireEvent.click(screen.getByTestId('rollup-btn'));
+  //   fireEvent.click(screen.getByText(/Duplicate /i));
+  //   fireEvent.click(screen.getByRole('button', {
+  //     name: /duplicate 2/i
+  //   }));
+  //   fireEvent.click(screen.getByRole('button', {
+  //     name:  /view on your store 3/i
+  //   }));
+  //   fireEvent.click(screen.getByText('View on your store'));
+  //   fireEvent.click(screen.getByText(/View on your store 4/i));
+  //   expect(actions[0].onAction).toBeCalled();
+  // });
+
+  test('on Action of Promote', () => {
     render(<RollupActionn />);
+
     fireEvent.click(screen.getByTestId('rollup-btn'));
     fireEvent.click(screen.getByText(/Share on Facebook/i));
+    expect(sections[0].items[0].onAction).toBeCalled();
+  });
+  test('on Action of Promote1', () => {
+    render(<RollupActionn />);
+
+    fireEvent.click(screen.getByTestId('rollup-btn'));
     fireEvent.click(screen.getByText(/Share on Faceboo1k/i));
-    fireEvent.click(screen.getByText(/Duplicate /i));
-    fireEvent.click(screen.getByText(/Duplicate 2/i));
-    fireEvent.click(screen.getByText('View on your store'));
-    fireEvent.click(screen.getByText(/View on your store 3/i));
-    fireEvent.click(screen.getByText(/View on your store 4/i));
-    expect(actions[0].onAction).not.toBeCalled();
-    screen.logTestingPlaygroundURL();
+    expect(sections[1].items[0].onAction).toBeCalled();
   });
 });

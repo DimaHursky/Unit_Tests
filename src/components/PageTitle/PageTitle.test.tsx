@@ -35,11 +35,11 @@ describe('Running Test for PageTitle', () => {
 
   test('Component PageTitle contain a text', () => {
     render(<TitlePage />);
-    screen.logTestingPlaygroundURL();
     const btn = screen.getByTestId('page-title');
 
     expect(btn).toHaveTextContent('title');
     expect(btn).toHaveTextContent('subtitle');
     expect(btn).toHaveTextContent('Title metadata');
+    screen.logTestingPlaygroundURL();
   });
 });

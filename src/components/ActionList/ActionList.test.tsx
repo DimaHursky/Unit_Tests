@@ -114,7 +114,7 @@ describe('Running Test for ActionList', () => {
     expect(items[0].onAction).toBeCalled();
   });
 
-  it.only('handles CSS text size', () => {
+  it('handles CSS text size', () => {
     ActionListt({ items });
     const buttonSize = screen.getByText('Import file');
 

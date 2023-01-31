@@ -97,20 +97,4 @@ describe('Running Test for ESDropZone', () => {
     expect(dropZoneID).toHaveProperty('autocomplete', 'off');
     expect(dropZoneID).toHaveProperty('multiple', true);
   });
-  //TODO - реалізувати перевірку мобільного вінка так як за посиланняи нище
-  // test.only('ESDropZone the popup select file is opens', ()=>{
-  //   https://testing-library.com/docs/example-react-modal/
-  //   const handleClose = jest.fn()
-
-  //   const {getByText} = render(
-  //     <TestingComponent onClose={handleClose}>
-  //       <div>test</div>
-  //     </TestingComponent>,
-  //   )
-  //   const dropDownBtn = screen.getByTestId(/drop-zone/i)
-
-  //   fireEvent.click(dropDownBtn);
-
-  //   screen.logTestingPlaygroundURL();
-  // })
 });

@@ -45,25 +45,26 @@ describe('Running Test for ESRangeSlider', () => {
         <SliderComponent />
       </EcosystemThemeProvider>,
     );
-
-    expect(screen.getByRole('slider')).toHaveAttribute('min', '0');
-    expect(screen.getByRole('slider')).toHaveAttribute('max', '100');
-    expect(screen.getByRole('slider')).toHaveAttribute('step', '1');
+    expect(screen.getByRole('slider')).toHaveAttribute('data-index', '0');
     expect(screen.getByRole('slider')).toHaveAttribute(
       'aria-orientation',
       'horizontal',
     );
+    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuemax', '100');
+    expect(screen.getByRole('slider')).toHaveAttribute('aria-valuemin', '0');
     expect(screen.getByRole('slider')).toHaveProperty('type', 'range');
-
-    //     expect({max : '100', }).toHaveProperty(['max', 100]);
-    //     expect({
-    //       name : 'Adil',
-    //       min: 0,
-    //       max: 100
-    //       step: 1
-    //       age : 23
-    //   }.age).toBe(23);
-
+    expect(screen.getByRole('slider')).toHaveAttribute('min', '0');
+    expect(screen.getByRole('slider')).toHaveAttribute('max', '100');
+    expect(screen.getByRole('slider')).toHaveAttribute('step', '1');
+    expect(screen.getByRole('slider')).toHaveAttribute('value', '10');
+    expect(screen.getByRole('slider')).toHaveAttribute(
+      'aria-orientation',
+      'horizontal',
+    );
+    expect(screen.getByRole('slider')).toHaveAttribute(
+      'style',
+      'border: 0px; height: 100%; margin: -1px; overflow: hidden; padding: 0px; position: absolute; white-space: nowrap; width: 100%; direction: ltr;',
+    );
     //   expect({
     //     name : 'Adil',
     //     age : 23

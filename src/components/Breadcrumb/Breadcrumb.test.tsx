@@ -51,6 +51,5 @@ describe('Running Test for Breadcrumb', () => {
       }),
     );
     expect(screen.getByRole('link')).toHaveAttribute('href', '/product');
-    screen.debug();
   });
 });

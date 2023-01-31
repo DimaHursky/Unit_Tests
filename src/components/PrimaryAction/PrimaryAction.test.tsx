@@ -58,9 +58,19 @@ describe('Running Test for PrimaryAction', () => {
 
   test('Component PrimaryAction contain product text', () => {
     render(BackBtn(props));
-    const btn = screen.getByTestId('primary-action');
-    console.log(btn.textContent);
-    expect(btn.textContent).toEqual('product');
-    screen.logTestingPlaygroundURL();
+    const actionBtn = screen.getByTestId('primary-action');
+    console.log(actionBtn.textContent);
+    expect(actionBtn.textContent).toEqual('product');
+  });
+
+  test('Component PrimaryAction contain product text', () => {
+    render(BackBtn(props));
+    const actionBtn = screen.getByRole('button', {
+      name: /product/i,
+    });
+    expect(actionBtn).toHaveAttribute('tabindex', '0');
+    expect(actionBtn).toHaveAttribute('type', 'button');
+    expect(actionBtn).toHaveAttribute('color', 'primary');
+    expect(actionBtn).toHaveAttribute('variant', 'contained');
   });
 });

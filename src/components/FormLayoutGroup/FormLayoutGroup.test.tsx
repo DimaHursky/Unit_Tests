@@ -14,5 +14,6 @@ describe('Running Test for FormLayoutGroup', () => {
       </EcosystemThemeProvider>,
     );
     expect(screen.getByText('Test')).not.toBeNull();
+    screen.logTestingPlaygroundURL();
   });
 });
