@@ -103,7 +103,6 @@ describe('Running Test for ActionMenu', () => {
     expect(actions[0].onAction).toBeCalled();
   });
 
-
   //TODO - розібратись чому не працює не ріхуються кліки
   // test('should make an action on ActionsMenu option ', () => {
   //   renderComponent({ groups, actions });

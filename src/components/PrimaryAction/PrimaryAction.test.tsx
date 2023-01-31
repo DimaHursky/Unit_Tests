@@ -66,7 +66,7 @@ describe('Running Test for PrimaryAction', () => {
   test('Component PrimaryAction contain product text', () => {
     render(BackBtn(props));
     const actionBtn = screen.getByRole('button', {
-      name: /product/i
+      name: /product/i,
     });
     expect(actionBtn).toHaveAttribute('tabindex', '0');
     expect(actionBtn).toHaveAttribute('type', 'button');

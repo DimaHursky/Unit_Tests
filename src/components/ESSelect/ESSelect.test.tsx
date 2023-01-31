@@ -168,15 +168,15 @@ describe('Running Test for ESSelect', () => {
   });
 
   test('should render ESSelect textbox is rendered', () => {
-     render(<TestingComponent options={selectGroup} labelInline disabled/>);
-     const selectComponent = screen.getByTestId(selectTestIds.select);
-     const btn = within(selectComponent).getByRole('button', {hidden: true});
-     fireEvent.mouseDown(btn);
+    render(<TestingComponent options={selectGroup} labelInline disabled />);
+    const selectComponent = screen.getByTestId(selectTestIds.select);
+    const btn = within(selectComponent).getByRole('button', { hidden: true });
+    fireEvent.mouseDown(btn);
 
-     const listBox = within(screen.getByRole('presentation')).getByRole(
-      'listbox'
-     )
-     expect(listBox).toBeInTheDocument();
+    const listBox = within(screen.getByRole('presentation')).getByRole(
+      'listbox',
+    );
+    expect(listBox).toBeInTheDocument();
     screen.logTestingPlaygroundURL();
   });
 });

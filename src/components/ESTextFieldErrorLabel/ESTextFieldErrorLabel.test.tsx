@@ -28,7 +28,7 @@ describe('Running Test for ESTextFieldErrorLabel', () => {
   });
 
   test('Component ESTextFieldErrorLabel is rendered', () => {
-    // const result =  
+    // const result =
     render(
       <EcosystemThemeProvider theme={LightTheme}>
         <ESTextFieldErrorLabel error={'Error text'} />
@@ -36,9 +36,9 @@ describe('Running Test for ESTextFieldErrorLabel', () => {
     );
     // const errorImage = result.container.querySelector('#sandbox > div > div > div > div > span > svg > path');
     const errorIcon = screen.getByTestId('ErrorRoundedIcon');
-    
+
     expect(errorIcon).toHaveAttribute('focusable', 'false');
     expect(errorIcon).toHaveAttribute('aria-hidden', 'true');
     expect(errorIcon).toHaveAttribute('viewBox', '0 0 24 24');
-  }); 
+  });
 });

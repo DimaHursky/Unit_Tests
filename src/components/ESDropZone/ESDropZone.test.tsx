@@ -98,5 +98,3 @@ describe('Running Test for ESDropZone', () => {
     expect(dropZoneID).toHaveProperty('multiple', true);
   });
 });
-
-

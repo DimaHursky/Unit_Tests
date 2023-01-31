@@ -85,7 +85,7 @@ describe('Running Test for Actions', () => {
     expect(screen.getByText('Promote')).toBeInTheDocument();
     expect(screen.getByText('Promote1')).toBeInTheDocument();
 
-    fireEvent.click(screen.getByText('Promote')); 
+    fireEvent.click(screen.getByText('Promote'));
     expect(screen.getByText('Share on Facebook')).toBeInTheDocument();
     fireEvent.click(screen.getByText('Promote1'));
     expect(screen.getByText('Share on Faceboo1k')).toBeInTheDocument();
@@ -95,7 +95,6 @@ describe('Running Test for Actions', () => {
     render(<ActionsComponent />);
     fireEvent.click(screen.getByText('Duplicate'));
     fireEvent.click(screen.getByText('Duplicate2'));
-
 
     expect(actions[0].onAction).toBeCalled();
     screen.logTestingPlaygroundURL();

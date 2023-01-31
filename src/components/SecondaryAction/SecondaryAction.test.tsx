@@ -36,10 +36,10 @@ describe('Running Test for SecondaryAction', () => {
     const actionBtn = screen.getByText('Secondary Action');
 
     fireEvent.click(actionBtn);
-    expect(actionBtn).toHaveAttribute('tabindex', '0')
-    expect(actionBtn).toHaveAttribute('type', 'button')
-    expect(actionBtn).toHaveAttribute('color', 'secondary')
-    expect(actionBtn).toHaveAttribute('variant', 'text')
+    expect(actionBtn).toHaveAttribute('tabindex', '0');
+    expect(actionBtn).toHaveAttribute('type', 'button');
+    expect(actionBtn).toHaveAttribute('color', 'secondary');
+    expect(actionBtn).toHaveAttribute('variant', 'text');
 
     screen.logTestingPlaygroundURL();
   });

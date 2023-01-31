@@ -56,10 +56,10 @@ describe('Running Test for ESRadioButton', () => {
 
   test('Component ESRadioButton have attributes', () => {
     render(<ChoiceListComponent />);
-    const radioBtn = screen.getByRole('radio', { name: /radio button/i });;
+    const radioBtn = screen.getByRole('radio', { name: /radio button/i });
     expect(radioBtn).toHaveAttribute('type', 'radio');
-    expect(radioBtn).toHaveAttribute('class', 'MuiInput-input')
-    expect(radioBtn).toHaveAttribute('value', 'radio')
+    expect(radioBtn).toHaveAttribute('class', 'MuiInput-input');
+    expect(radioBtn).toHaveAttribute('value', 'radio');
     screen.debug();
     screen.logTestingPlaygroundURL();
   });

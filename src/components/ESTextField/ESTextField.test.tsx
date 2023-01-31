@@ -23,7 +23,7 @@ describe('Running Test for ESTextField', () => {
         <ESTextField value={'Value'} placeholder={'Placeholder'} />
       </EcosystemThemeProvider>,
     );
-    const textBox = getByRole('textbox')
+    const textBox = getByRole('textbox');
 
     expect(textBox).toBeEnabled();
     expect(textBox).toBeInTheDocument();
@@ -31,8 +31,7 @@ describe('Running Test for ESTextField', () => {
   });
 
   test('Component ESTextField is contain attributes', () => {
-    const { getByTestId, getByRole } = 
-    render(
+    const { getByTestId, getByRole } = render(
       <EcosystemThemeProvider theme={LightTheme}>
         <ESTextField value={'value'} placeholder={'Placeholder'} />
       </EcosystemThemeProvider>,
@@ -42,6 +41,9 @@ describe('Running Test for ESTextField', () => {
     expect(placeholder).toHaveAttribute('aria-invalid', 'false');
     expect(placeholder).toHaveAttribute('type', 'text');
     expect(placeholder).toHaveAttribute('value', 'value');
-    expect(placeholder).toHaveAttribute('class', 'MuiInputBase-input css-1cicwd5-MuiInputBase-input');
+    expect(placeholder).toHaveAttribute(
+      'class',
+      'MuiInputBase-input css-1cicwd5-MuiInputBase-input',
+    );
   });
 });
